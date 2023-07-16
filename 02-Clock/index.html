@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clock</title>
+    <link rel="icon" href="https://fav.farm/💩" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="clock">
+        <div class="clock-face">
+            <div class="center-dot"></div>
+            <div class="hand akrep"></div>
+            <div class="hand yelkovan"></div>
+            <div class="hand saniye"></div>
+
+        </div>
+    </div>
+    
+
+
+<script>
+
+    const saniye = document.querySelector(".saniye");
+    const yelkovan = document.querySelector(".yelkovan");
+    const akrep = document.querySelector(".akrep");
+
+    function setHandFeatures(hand, length, height, positionX ) {
+        hand.style.width = `${length}%`;
+        hand.style.height = `${height}px`;
+        hand.style.left = `${positionX}%`;
+    }
+
+    setHandFeatures(akrep    , 30 , "" , 20 );
+    setHandFeatures(yelkovan , 42 , "" , 8.2);
+    setHandFeatures(saniye   , 50 , 4  ,);
+
+    function setDate(){
+        const now = new Date();
+        const seconds = now.getSeconds();
+        const secondsDegrees = (seconds * 6)+90;
+        saniye.style.transform = `rotate(${secondsDegrees}deg)`;
+
+        if(seconds===50){
+            saniye.style.transition = `all 0s`;
+        
+        }
+        else if (seconds===1){
+            saniye.style.transition = "";
+        }
+
+
+        const mins = now.getMinutes();
+        const minsDegrees = (mins * 6)+90;
+        yelkovan.style.transform = `rotate(${minsDegrees}deg)`;
+
+        const hours = now.getHours();
+        const hoursDegrees = (hours * 30) +90;
+        akrep.style.transform= `rotate(${hoursDegrees}deg)`;
+
+    }
+    setInterval(setDate,1000);
+</script>
+
+</body>
+</html>
